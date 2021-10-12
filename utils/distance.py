@@ -10,9 +10,12 @@
 
 import pandas as pd
 import numpy as np
+from typing import Union
+
+from pandas.core.algorithms import isin
 
 
-def create_dist_mat(location: pd.DataFrame) -> np.ndarray:
+def create_dist_mat(location: Union[pd.DataFrame, np.ndarray]) -> np.ndarray:
     """
     Description::
 
@@ -22,16 +25,18 @@ def create_dist_mat(location: pd.DataFrame) -> np.ndarray:
     Usage::
 
     """
-
+    if isinstance(location, pd.DataFrame):
+        location = location.loc[:, ["x", "y"]].values
+    
     N, _ = location.shape
 
     dist_matrix = np.zeros([N, N])
 
     for i in range(N):
-        vi = location.loc[i+1, ["x", "y"]].values
+        vi = location[i, :]
         for j in range(N):
             if j != i:
-                vj = location.loc[j+1, ["x", "y"]].values
+                vj = location[j, :]
                 dij = np.sqrt(np.sum((vi - vj)**2))
                 dist_matrix[i, j] = dij
 
