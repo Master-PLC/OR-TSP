@@ -49,5 +49,9 @@ if __name__ == "__main__":
 
     # print(location_table)
     print(location_table.loc[:, ["x", "y"]])
+    # print(len(location_table))
+    # print(location_table.columns)
+    print(location_table.shape)
+    # print(location_table.loc[1, ["x", "y"]].values)
     # print(location_table.loc[:16, ["x", "y"]])
     # print(location_table.loc[17:, ["x", "y"]])
