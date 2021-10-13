@@ -33,7 +33,7 @@ if __name__ == "__main__":
                         help="The name of the solution algorithm.")
     parser.add_argument('--image_storage', type=str, default="images",
                         help="The optimal allocation path image storage location obtained by the algorithm.")
-    parser.add_argument('--num_test', type=int, default=10,
+    parser.add_argument('--num_test', type=int, default=50,
                         help="The number of tests of the algorithm.")
     config = parser.parse_args()
 
@@ -50,16 +50,16 @@ if __name__ == "__main__":
     runtime = model.get_runtime()
     path_length = model.get_path_length()
 
-    print(f"After {config.num_test} tests:")
+    print(f"After {config.num_test} tests of {config.algo} algorithm:")
     print("The best material distribution route is: ")
     for i in range(num_community):
-        print(f"Community{path[i]} =>", end=" ")
+        print(f"Community{path[i]} =>", end="\n" if (i+1) % 8 == 0 else " ")
     print(f"Community{path[-1]}")
-    print("\n")
+    print("")
     print(
         f"The shortest distribution distance obtained by solving is: {path_length}.")
-    print("\n")
-    print(f"The running time of the program is：{runtime:.12f}.")
+    print("")
+    print(f"The running time of the program is：{runtime:.12f}s.")
 
     plt.figure(figsize=(10, 6))
     plt.title(
