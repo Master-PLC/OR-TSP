@@ -69,7 +69,7 @@ if __name__ == "__main__":
     plt.ylabel('Y', fontsize=12)
     for i, (x, y) in enumerate(zip(X, Y)):
         if i != num_community:
-            plt.text(x+0.5, y+0.5, i, ha='center', va='bottom', fontsize=8)
+            plt.text(x+0.5, y+0.5, path[i], ha='center', va='bottom', fontsize=8)
     save_path = os.path.join(config.image_storage, f"{config.algo}.png")
     if not os.path.isdir(config.image_storage):
         os.mkdir(config.image_storage)

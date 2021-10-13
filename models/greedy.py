@@ -9,11 +9,12 @@
 '''
 
 import time
+import numpy as np
 from typing import List, Tuple
 
 
 class Greedy(object):
-    def __init__(self, location, dist_matrix, num_test) -> None:
+    def __init__(self, location: np.ndarray, dist_matrix: np.ndarray, num_test: int) -> None:
         super().__init__()
         self.location = location
         self.dist_matrix = dist_matrix
@@ -27,6 +28,8 @@ class Greedy(object):
         v_dict = dict()
 
         for i in range(self.num_test):
+            print(f"Number {i} test.")
+            
             i = 1
             j = 0
             path_length = 0
@@ -57,7 +60,9 @@ class Greedy(object):
             v = v+[v[0]]
 
             end_time = time.time()
-            self.runtime += end_time - start_time
+            interval = end_time - start_time
+            print(f"Runing time: {interval:.5f}.")
+            self.runtime += interval
             v_dict[path_length] = v
 
         sorted_dict = sorted(v_dict.items(), key=lambda item: item[0])
@@ -65,7 +70,7 @@ class Greedy(object):
         v = sorted_dict[0][1]
 
         return v
-
+    
     def get_coordinates(self, path: List) -> Tuple:
         X = []
         Y = []
@@ -76,8 +81,8 @@ class Greedy(object):
 
         return X, Y
 
-    def get_runtime(self):
+    def get_runtime(self) -> float:
         return self.runtime / self.num_test
 
-    def get_path_length(self):
+    def get_path_length(self) -> float:
         return self.pathLen

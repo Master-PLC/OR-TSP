@@ -9,9 +9,11 @@
 '''
 
 from models.greedy import Greedy
+from models.branchbound import BranchBound
 
 NAME_TO_MODEL_MAP = {
     "greedy": Greedy,
+    "branchbound": BranchBound
 }
 
 
