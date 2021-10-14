@@ -20,7 +20,7 @@ class Greedy(BaseModel):
         v_dict = dict()
 
         for i in range(self.num_test):
-            print(f"Number {i} test.")
+            # print(f"Number {i} test.")
 
             i = 1
             j = 0
@@ -53,7 +53,7 @@ class Greedy(BaseModel):
 
             end_time = time.time()
             interval = end_time - start_time
-            print(f"Runing time: {interval:.5f}.")
+            # print(f"Runing time: {interval:.5f}.")
             self.runtime += interval
             v_dict[path_length] = v
 

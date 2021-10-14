@@ -333,7 +333,7 @@ class GA_V2(BaseModel):
         v_dict = dict()
 
         for i in range(self.num_test):
-            print(f"Number {i} test.")
+            # print(f"Number {i} test.")
 
             start_time = time.time()
 
@@ -367,7 +367,7 @@ class GA_V2(BaseModel):
 
             end_time = time.time()
             interval = end_time - start_time
-            print(f"Runing time: {interval:.5f}.")
+            # print(f"Runing time: {interval:.5f}.")
             self.runtime += interval
             v_dict[path_length] = v
 

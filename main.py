@@ -35,7 +35,7 @@ if __name__ == "__main__":
                         help="The name of the solution algorithm.")
     parser.add_argument('--image_storage', type=str, default="images",
                         help="The optimal allocation path image storage location obtained by the algorithm.")
-    parser.add_argument('--num_test', type=int, default=1,
+    parser.add_argument('--num_test', type=int, default=20,
                         help="The number of tests of the algorithm.")
     config = parser.parse_args()
 

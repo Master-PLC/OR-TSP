@@ -49,7 +49,7 @@ class SA(BaseModel):
         v_dict = dict()
 
         for i in range(self.num_test):
-            print(f"Number {i} test.")
+            # print(f"Number {i} test.")
 
             start_time = time.time()
             init_path = self.init_path()
@@ -99,7 +99,7 @@ class SA(BaseModel):
 
             end_time = time.time()
             interval = end_time - start_time
-            print(f"Runing time: {interval:.5f}s.")
+            # print(f"Runing time: {interval:.5f}s.")
             self.runtime += interval
             v_dict[path_length] = v
 

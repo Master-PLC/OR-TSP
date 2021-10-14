@@ -22,7 +22,7 @@ class Hopfield(BaseModel):
         #     dist_matrix[i, i] = np.sqrt(np.sum(location[i, :]**2))
 
         self.A = 2000
-        self.D = 25
+        self.D = 15
         self.u0 = 0.02
         self.step = 0.001
         self.iterations = 4000
@@ -84,7 +84,7 @@ class Hopfield(BaseModel):
         energy_list = []
 
         for i in range(self.num_test):
-            print(f"Number {i} test.")
+            # print(f"Number {i} test.")
 
             best_distance = np.inf
             path_best = []
@@ -118,7 +118,7 @@ class Hopfield(BaseModel):
 
             end_time = time.time()
             interval = end_time - start_time
-            print(f"Runing time: {interval:.5f}s.")
+            # print(f"Runing time: {interval:.5f}s.")
             self.runtime += interval
             v_dict[path_length] = v
 
