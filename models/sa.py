@@ -14,23 +14,18 @@ import random
 import numpy as np
 from typing import List, Tuple
 
+from .base import BaseModel
 
-class SA(object):
+
+class SA(BaseModel):
     def __init__(self, location: np.ndarray, dist_matrix: np.ndarray, num_test: int) -> None:
-        super().__init__()
-        self.location = location
-        self.N = dist_matrix.shape[0]
-        self.dist_matrix = dist_matrix
-        self.num_test = num_test
+        super(SA, self).__init__(location, dist_matrix, num_test)
 
         self.iteration1 = 1000  # 外循环迭代次数
         self.T0 = 100000  # 初始温度，取大些
         self.Tf = 1  # 截止温度，可以不用
         self.alpha = 0.95  # 温度更新因子
         self.iteration2 = 10  # 内循环迭代次数
-
-        self.pathLen = 0
-        self.runtime = 0
 
     def init_path(self):
         path = random.sample(range(self.N), self.N)
@@ -81,7 +76,7 @@ class SA(object):
                         path1[0:n1] = path_now[0:n1]
                         path1[n1:n2+1] = path_now[n2::-1]
                         path1[n2+1:self.N] = path_now[n2+1:self.N]
-                    
+
                     s = self.cal_path_length(path1)
                     # 判断是否更新解
                     if s <= f_now:
@@ -92,7 +87,7 @@ class SA(object):
                         if random.random() < math.exp(-deltaf/self.T0):
                             f_now = s
                             path_now = path1.copy()
-                    
+
                     if s < fbest:
                         fbest = s
                         path_best = path1.copy()
@@ -113,19 +108,3 @@ class SA(object):
         v = sorted_dict[0][1]
 
         return v
-
-    def get_coordinates(self, path: List) -> Tuple:
-        X = []
-        Y = []
-
-        for v in path:
-            X.append(self.location[v, 0])
-            Y.append(self.location[v, 1])
-
-        return X, Y
-
-    def get_runtime(self) -> float:
-        return self.runtime / self.num_test
-
-    def get_path_length(self) -> float:
-        return self.pathLen

@@ -17,9 +17,11 @@ import matplotlib.pyplot as plt
 from utils.distance import create_dist_mat
 from utils.data_process import create_location
 from utils.name_to_model import name2model
+from utils.seed_init import init_seed
 
 
 if __name__ == "__main__":
+    init_seed()
     # np.set_printoptions(threshold=np.inf)
 
     # pd.set_option('expand_frame_repr', False)
@@ -29,7 +31,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Solve the TSP Problem")
     parser.add_argument('--data_filename', type=str, default="./data/location.csv",
                         help="Community location file storage location.")
-    parser.add_argument('--algo', type=str, default="SA",
+    parser.add_argument('--algo', type=str, default="Hopfield",
                         help="The name of the solution algorithm.")
     parser.add_argument('--image_storage', type=str, default="images",
                         help="The optimal allocation path image storage location obtained by the algorithm.")

@@ -14,26 +14,21 @@ import numpy as np
 import pandas as pd
 from typing import List, Tuple
 
+from .base import BaseModel
+
 
 __all__ = ("GA_V1", )
 
 
-class GA_V1(object):
+class GA_V1(BaseModel):
     def __init__(self, location: np.ndarray, dist_matrix: np.ndarray, num_test: int) -> None:
-        super().__init__()
-        self.location = location
-        self.dist_matrix = dist_matrix
-        self.N = dist_matrix.shape[0]
-        self.num_test = num_test
+        super(GA_V1, self).__init__(location, dist_matrix, num_test)
 
         self.iterations = 100  # 迭代次数
         self.popsize = 100  # 种群大小
         self.tournament_size = 5  # 锦标赛小组大小
         self.crossover_pr = 0.95  # 交叉概率
         self.mutation_pr = 0.1  # 变异概率
-
-        self.pathLen = 0
-        self.runtime = 0
 
     def init_pop(self):
         return [random.sample(list(range(self.N)), self.N)
@@ -192,30 +187,10 @@ class GA_V1(object):
 
         return v
 
-    def get_coordinates(self, path: List) -> Tuple:
-        X = []
-        Y = []
 
-        for v in path:
-            X.append(self.location[v, 0])
-            Y.append(self.location[v, 1])
-
-        return X, Y
-
-    def get_runtime(self) -> float:
-        return self.runtime / self.num_test
-
-    def get_path_length(self) -> float:
-        return self.pathLen
-
-
-class GA_V2(object):
+class GA_V2(BaseModel):
     def __init__(self, location: np.ndarray, dist_matrix: np.ndarray, num_test: int) -> None:
-        super().__init__()
-        self.location = location
-        self.dist_matrix = dist_matrix
-        self.N = dist_matrix.shape[0]
-        self.num_test = num_test
+        super(GA_V2, self).__init__(location, dist_matrix, num_test)
 
         self.origin = 0
         self.path_index = [i for i in range(self.N)]
@@ -227,9 +202,6 @@ class GA_V2(object):
         self.random_select_pr = 0.5  # 弱者的存活概率
         self.crossover_pr = 0.95  # 交叉概率
         self.mutation_pr = 0.1  # 变异概率
-
-        self.pathLen = 0
-        self.runtime = 0
 
     def improve(self, code_vector):
         i = 0
@@ -404,19 +376,3 @@ class GA_V2(object):
         v = sorted_dict[0][1]
 
         return v
-
-    def get_coordinates(self, path: List) -> Tuple:
-        X = []
-        Y = []
-
-        for v in path:
-            X.append(self.location[v, 0])
-            Y.append(self.location[v, 1])
-
-        return X, Y
-
-    def get_runtime(self) -> float:
-        return self.runtime / self.num_test
-
-    def get_path_length(self) -> float:
-        return self.pathLen

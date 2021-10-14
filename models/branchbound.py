@@ -13,19 +13,14 @@ import numpy as np
 from queue import Queue
 from typing import List, Tuple
 
+from .base import BaseModel
 
-class BranchBound(object):
+
+class BranchBound(BaseModel):
     def __init__(self, location: np.ndarray, dist_matrix: np.ndarray, num_test: int) -> None:
-        super().__init__()
-        self.location = location
-        self.N = dist_matrix.shape[0]
+        super(BranchBound, self).__init__(location, dist_matrix, num_test)
         for i in range(self.N):
-            dist_matrix[i, i] = np.inf
-        self.dist_matrix = dist_matrix
-        self.num_test = num_test
-
-        self.pathLen = 0
-        self.runtime = 0
+            self.dist_matrix[i, i] = np.inf
 
     def init_bound_queue(self):
         self.low = 0
@@ -162,22 +157,6 @@ class BranchBound(object):
         v = sorted_dict[0][1]
 
         return v
-
-    def get_coordinates(self, path: List) -> Tuple:
-        X = []
-        Y = []
-
-        for v in path:
-            X.append(self.location[v, 0])
-            Y.append(self.location[v, 1])
-
-        return X, Y
-
-    def get_runtime(self) -> float:
-        return self.runtime / self.num_test
-
-    def get_path_length(self) -> float:
-        return self.pathLen
 
 
 class Node(object):
