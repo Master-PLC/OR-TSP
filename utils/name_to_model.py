@@ -11,11 +11,13 @@
 from models.greedy import Greedy
 from models.branchbound import BranchBound
 from models.ga import GA_V1, GA_V2
+from models.sa import SA
 
 NAME_TO_MODEL_MAP = {
     "greedy": Greedy,
     "branchbound": BranchBound,
-    "ga": GA_V2
+    "ga": GA_V2,
+    "sa": SA
 }
 
 
