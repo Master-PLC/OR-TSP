@@ -29,11 +29,11 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Solve the TSP Problem")
     parser.add_argument('--data_filename', type=str, default="./data/location.csv",
                         help="Community location file storage location.")
-    parser.add_argument('--algo', type=str, default="Greedy",
+    parser.add_argument('--algo', type=str, default="GA",
                         help="The name of the solution algorithm.")
     parser.add_argument('--image_storage', type=str, default="images",
                         help="The optimal allocation path image storage location obtained by the algorithm.")
-    parser.add_argument('--num_test', type=int, default=50,
+    parser.add_argument('--num_test', type=int, default=1,
                         help="The number of tests of the algorithm.")
     config = parser.parse_args()
 
